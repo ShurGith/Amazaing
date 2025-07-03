@@ -1,16 +1,33 @@
-import { useState } from "react";
-import Child from "./components/Child";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [showChild, setShowChild] = useState(true);
+  const [users, setUsers] = useState([]);
+
+  const getUsers = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await response.json();
+    setUsers(data);
+  }
+
+  useEffect(() => {
+    getUsers();
+  }, [])
+
+  const HTMLUsers = users.map((user) => {
+    return (
+      <div key={user.id}>
+        <h3>{user.name}</h3>
+      </div>
+    )
+  })
+
   return (
     <div>
-      <h1>useEffect() | Ciclo de Vida de los Componentes</h1>
+      <h1>fetch() | Llamada a una API</h1>
 
-      <button onClick={() => setShowChild(!showChild)}>Toggle Child</button>
-      {showChild && <Child></Child>}
+      <section>{HTMLUsers}</section>
     </div>
   );
 }
 
-export default App; 
+export default App;

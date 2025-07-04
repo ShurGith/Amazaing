@@ -1,15 +1,13 @@
-import { useState } from "react";
-import Child from "./components/Child";
-
+import {Routes, Route} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import BlogPage from './pages/BlogPage'
 function App() {
-  const [showChild, setShowChild] = useState(true);
-  return (
-    <div>
-      <h1>useEffect() | Ciclo de Vida de los Componentes</h1>
 
-      <button onClick={() => setShowChild(!showChild)}>Toggle Child</button>
-      {showChild && <Child></Child>}
-    </div>
+  return (
+    <Routes>
+      <Route path="/" element ={<HomePage />}/>
+      <Route path="/blog" element ={<BlogPage />}/>
+    </Routes>
   );
 }
 

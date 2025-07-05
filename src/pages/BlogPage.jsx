@@ -17,8 +17,11 @@ function BlogPage() {
 
   return (
     <>
-      <HeaderComponent></HeaderComponent>
+      <HeaderComponent />
 
+      <h1>Blog</h1>
+
+      {posts.length < 1 && <p>Loading...</p>}
       <div className="posts-container">
         {posts.map(post =>
           <div key={post.id} className="post-card-div">

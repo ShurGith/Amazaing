@@ -10,7 +10,7 @@ const  SettingsPage = lazy(() => import( "./pages/SettingsPage"))
 
 function App() {
   return (
-    <Suspense fallback={<h2>...Loading</h2>}>
+    <Suspense fallback={<h2>...Cargando...</h2>}>
     <Routes>
       <Route path="/" element={<HomePage />} />    
       <Route path="/blog" element={<BlogPage />} />    

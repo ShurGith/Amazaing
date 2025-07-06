@@ -1,32 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import PostCard from "../components/PostCard";
+import { useContext } from "react";
+import { BlogContext } from "../context/Blog.Context";
+import { UserContext } from "../context/User.Context";
 
 function BlogPage() {
-  const [posts, setPosts] = useState([])
-  const[error, setError] = useState(false)
-
-  const getPosts = async () => {
-    try{
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-    const data = await response.json()
-    setPosts(data)
-    setError(false)
-    console.log(data);
-    }catch(e){
-      setError(true)
-    }
-  }
+  const { posts, getPosts, error } = useContext(BlogContext)
+const {login, logout} = useContext(UserContext)
 
   useEffect(() => {
     getPosts()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
       <HeaderComponent></HeaderComponent>
 
+      <button onClick={() => login()}>Login</button>
+      <button onClick={() => logout()}>Logout</button>
+
       <div className="posts-container">
+        
         {error ? 
         <h2>Algo ha salido mal </h2>
         :posts.length ? posts.map(post =>

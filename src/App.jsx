@@ -1,12 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import BlogPage from "./pages/BlogPage";
-import PostDetails from "./pages/PostDetails";
-import ErrorPage from "./pages/ErrorPage";
-import SettingsPage from "./pages/SettingsPage";
+import { lazy, Suspense } from "react";
+
+
+const  BlogPage = lazy(() => import( "./pages/BlogPage"))
+const  PostDetails = lazy(() => import( "./pages/PostDetails"))
+const  ErrorPage = lazy(() => import( "./pages/ErrorPage"))
+const  SettingsPage = lazy(() => import( "./pages/SettingsPage"))
 
 function App() {
   return (
+    <Suspense fallback={<h2>...Loading</h2>}>
     <Routes>
       <Route path="/" element={<HomePage />} />    
       <Route path="/blog" element={<BlogPage />} />    
@@ -15,6 +19,7 @@ function App() {
 
       <Route path="*" element={<ErrorPage />} />
     </Routes>
+    </Suspense>
   );
 }
 

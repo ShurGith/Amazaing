@@ -13,6 +13,9 @@ function HeaderComponent() {
           <li>
             <NavLink className="link" to="/blog">Blog</NavLink>
           </li>
+          <li>
+            <NavLink className="link" to="/settings">Settings</NavLink>
+          </li>
         </ul>
       </nav>
     </header>

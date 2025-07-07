@@ -10,7 +10,7 @@ function HomePage() {
       <HeaderComponent></HeaderComponent>
 
       <div>
-    <h1>Home Page</h1>
+    <h1 data-testid="homepage-title">Home Page</h1>
     <p>Hola {user &&  <span>{user.name}</span>}</p>
 
       <button onClick={() => login()}>Login</button>
